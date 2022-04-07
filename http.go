@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-func apiPing(w http.ResponseWriter, r *http.Request) {
+func ApiPing(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	fmt.Fprint(w, "pong")
 }
