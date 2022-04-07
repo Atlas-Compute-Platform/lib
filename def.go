@@ -7,9 +7,8 @@ const (
 )
 
 const (
-	KV_KEY   = "key"
-	KV_VAL   = "val"
-	KV_SVC   = "svc"
-	KV_PROTO = "proto"
-	KV_PORT  = "port"
+	KV_KEY = "key"
+	KV_VAL = "val"
+	KV_SVC = "svc"
+	KV_MSG = "msg"
 )
