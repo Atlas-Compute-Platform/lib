@@ -6,5 +6,5 @@ import (
 )
 
 func LogError(w io.Writer, sym string, err error) {
-	fmt.Fprintf(w, "%s(%s)!\n", sym, err)
+	fmt.Fprintf(w, LOG_FMT, sym, err)
 }
