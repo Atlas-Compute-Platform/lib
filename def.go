@@ -1,11 +1,6 @@
 package lib
 
-const (
-	PORT    = ":8800"
-	VERS    = "0.0"
-	LOG_FMT = "%s(%s)!\n"
-)
-
+const VERS = "0.0"
 const FD_MODE = 0660
 
 const (
@@ -13,5 +8,5 @@ const (
 	KV_VAL = "val"
 	KV_SVC = "svc"
 	KV_MSG = "msg"
-	KV_ID = "id"
+	KV_ID  = "id"
 )

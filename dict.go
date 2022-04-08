@@ -8,16 +8,12 @@ import (
 
 type Dict map[string]string
 
-func LoadDict(r io.Reader) (Dict, error) {
+func ImportDict(buf []byte) (Dict, error) {
 	var (
-		buf []byte
 		err error
 		dic = make(Dict)
 	)
 
-	if buf, err = io.ReadAll(r); err != nil {
-		return nil, err
-	}
 	if json.Unmarshal(buf, &dic) != nil {
 		return nil, err
 	}
@@ -25,13 +21,43 @@ func LoadDict(r io.Reader) (Dict, error) {
 	return dic, nil
 }
 
-func StoreDict(dic Dict, w io.Writer) error {
+func ExportDict(dic Dict) ([]byte, error) {
 	var (
 		buf []byte
 		err error
 	)
 
 	if buf, err = json.Marshal(&dic); err != nil {
+		return nil, err
+	}
+
+	return buf, nil
+}
+
+func ReceiveDict(r io.Reader) (Dict, error) {
+	var (
+		buf []byte
+		err error
+		dic Dict
+	)
+
+	if buf, err = io.ReadAll(r); err != nil {
+		return nil, err
+	}
+	if dic, err = ImportDict(buf); err != nil {
+		return nil, err
+	}
+
+	return dic, nil
+}
+
+func SendDict(dic Dict, w io.Writer) error {
+	var (
+		buf []byte
+		err error
+	)
+
+	if buf, err = ExportDict(dic); err != nil {
 		return err
 	}
 	if _, err = fmt.Fprint(w, string(buf)); err != nil {
