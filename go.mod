@@ -1,3 +1,3 @@
-module github.com/Atlas-Compute-Environment/lib
+module github.com/Atlas-Compute-Platform/lib
 
 go 1.18
