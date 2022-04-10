@@ -29,3 +29,7 @@ func ApiPing(w http.ResponseWriter, r *http.Request) {
 func LogError(w io.Writer, sym string, err error) {
 	fmt.Fprintf(w, FMT_LOG, sym, err)
 }
+
+func LogMessage(w io.Writer, msg string) {
+	fmt.Fprintf(w, "%s", msg)
+}
