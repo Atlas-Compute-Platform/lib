@@ -6,16 +6,29 @@ package lib
 */
 
 import (
+	"flag"
 	"fmt"
 	"io"
 	"net/http"
+	"os"
 )
 
 const (
-	VERS    = "0.0"
 	PORT    = ":8800"
-	FMT_LOG = "%s(%s)!\n"
+	FMT_LOG = "%s => %s\n"
+	CONFIG  = "config.json"
 )
+
+var (
+	SvcName = "Atlas Microservice"
+	SvcVers = "0.0"
+)
+
+func Usage() {
+	fmt.Fprintf(os.Stderr, "%s %s\n", SvcName, SvcVers)
+	flag.PrintDefaults()
+	os.Exit(1)
+}
 
 func SetCors(w *http.ResponseWriter) {
 	(*w).Header().Set("Access-Control-Allow-Origin", "*")
@@ -24,6 +37,11 @@ func SetCors(w *http.ResponseWriter) {
 func ApiPing(w http.ResponseWriter, r *http.Request) {
 	SetCors(&w)
 	fmt.Fprint(w, "pong")
+}
+
+func LogFatal(w io.Writer, sym string, err error, ec int) {
+	fmt.Fprintf(w, FMT_LOG, sym, err)
+	os.Exit(ec)
 }
 
 func LogError(w io.Writer, sym string, err error) {
