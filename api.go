@@ -1,5 +1,3 @@
 package lib
 
-const (
-	API_PORT = ":80"
-)
+const API_PORT = ":80"

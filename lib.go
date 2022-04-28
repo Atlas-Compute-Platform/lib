@@ -17,6 +17,7 @@ const (
 	PORT    = ":8800"
 	FMT_LOG = "%s => %s\n"
 	CONFIG  = "config.json"
+	ERRC    = 1
 )
 
 var (
@@ -39,9 +40,9 @@ func ApiPing(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, "pong")
 }
 
-func LogFatal(w io.Writer, sym string, err error, ec int) {
+func LogFatal(w io.Writer, sym string, err error) {
 	fmt.Fprintf(w, FMT_LOG, sym, err)
-	os.Exit(ec)
+	os.Exit(ERRC)
 }
 
 func LogError(w io.Writer, sym string, err error) {
